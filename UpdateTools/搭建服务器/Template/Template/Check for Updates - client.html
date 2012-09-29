@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>FileServer :: Check for updates</title>
+<link rel="stylesheet" type="text/css" href="/template/css/style.css" />
+		<script type="text/javascript">
+				function activate() {
+				var lookForUpdate = (window.location.href.slice(window.location.href.indexOf( "?" ) + 1));
+				var lookForUpdate = lookForUpdate.slice(0,5);
+				if (lookForUpdate == "redir") window.location= "http://s559149c2.adsl.wanadoo.nl/template/Check%20for%20Updates.html?"+window.location.href.slice(0, window.location.href.indexOf( '?' ));
+				if (lookForUpdate != "http:") { if (lookForUpdate != "redir") checkVersion(); }; }
+				function checkVersion() {
+				var myVersion = "v1.2.1"
+				var releasedVersion = (window.location.href.slice(window.location.href.indexOf( "?" ) + 1));
+				parent.document.getElementById('change').innerHTML = 'You are currently using <span class="response">HFS Terayon '+myVersion+'</span><br /><br />The most recent version released is <span class="response">HFS Terayon '+releasedVersion+'</span><br /><br />';
+				if (myVersion==releasedVersion) parent.document.getElementById('change').innerHTML += '<span class="UploadSuccesfull" style="font-size: 14px;">Your version is up to date!!</span>';
+				else if (myVersion<releasedVersion) parent.document.getElementById('change').innerHTML += '<span class="UploadFailed" style="font-size: 14px;">Your version is out of date!!</span><br /><span style="font-size: 12px;">Please go to <i><b><a href="http://s559149c2.adsl.wanadoo.nl/HFS%20Terayon%20Template/HFS%20Terayon%20'+releasedVersion+'">this page</a></b></i> to download the latest available version!';
+else parent.document.getElementById('change').innerHTML += '<span class="UploadFailed" style="font-size: 14px;">Something is going wrong here.. </span><br /><span style="font-size: 12px;">Or you stole the latest available release, or, which is most likely, you messed up with the URL or the code. Another possibility is that you tried to open this file locally; to make it work, you have to open it using HFS.</span>';
+				}
+		</script>
+</head>
+<body>
+<img src="/template/images/cellpic3.gif" width="0" height="0" alt="" /> <!-- Used to pre-load this image -->
+<div id="highslide-container"></div>
+<a name="top"></a>
+
+<table width="80%" cellspacing="0" cellpadding="10" border="0" align="center">
+<tr>
+<td class="bodyline">
+<table width="100%" background="/template/images/top2.jpg" bgcolor="#7A9ADE" cellspacing="0" cellpadding="0" border="0" align="center" height="78" nowrap="nowrap">
+	<tr>
+		<td width="95" align="left" height="78"><img src="/template/images/top.jpg" alt="top" /></td>
+
+		<td width="100%" align="center" height="78"><span class="MessageHeader"><script type="text/javascript">var host = window.location.href.slice(7); var host = host.slice(0, host.indexOf( "/" ) + 1); document.write("http://"+host)</script></span></td>
+		<td width="95" align="right" height="78"><img src="/template/images/top1.jpg" alt="top1" /></td>
+	</tr>
+</table>
+<br />
+
+<table class="forumline" width="100%" cellspacing="1" cellpadding="4" border="0">
+	<tr>
+		<td class="catLeft" colspan="5" height="28"><span class="cattitle">FileServer :: Message</span></td>
+
+	</tr>
+	<tr>
+		<td height="23" class="nav1" align="center">
+			<span class="nav_top">
+				<a href="/">Home</a> &#8226;
+				<a href="">Refresh</a> &#8226;
+				<a href="http://www.rejetto.com/forum/index.php?board=21.0" target="_blank">Forum</a> &#8226;
+				<a href="">Current user: []</a>
+				 &#8226; <a href="~login">Login</a>
+				&#8226; <a href="/template/about.html">About</a>
+				&#8226; <a href="http://www.rejetto.com/forum/index.php?topic=4071.0" target="_blank">Help</a>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="row4">
+			<table width="100%" cellspacing="0" cellpadding="1" border="0">
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="50">&nbsp;</td>
+
+					<td valign="top" width="100%">
+
+<div class="MessageHeader">
+<i>Checking for Updates...</i></div>
+<br />
+
+<div class="MessageText" id="change">
+<script type="text/javascript">document.write('<a href="http://s559149c2.adsl.wanadoo.nl/template/Check%20for%20Updates.html?'+window.location.href+'">Do i need an update?</a>');</script>
+</div>
+<div id="activate">
+</div>
+<script type="text/javascript">activate()</script>
+<br />
+                    </td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+	  	<td class="v2" colspan="5" height="15">&nbsp;</td>
+	</tr>
+</table>
+
+
+<br clear="all" /><br />
+	<table width="100%" cellpadding="3" cellspacing="1" border="0" class="forumline" align="center">
+		<tr>
+			<td align="right" class="copyright" height="28">
+				Powered by <a href="http://www.rejetto.com/hfs/" target="_blank">Http File Server 2.1d</a> &copy; 2002, 2006 Rejetto
+				<br />
+				Terayon Theme v2B.02 <a href="http://www.phpbb.com/" target="_blank">(phpBB theme)</a> created by <a href="http://www.systemcorp.net/" target="_blank">lithosphere</a>, Converted by <a href="http://www.rejetto.com/forum/index.php?topic=4071.0" target="_blank">Giant Eagle v1.2.1</a>&nbsp;
+			</td>
+		</tr>
+	</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
