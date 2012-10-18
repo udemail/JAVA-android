@@ -6,9 +6,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 import android.content.Intent;
 import android.net.Uri;
@@ -72,6 +76,15 @@ import android.os.Message;
 public class MainActivity extends Activity {
 	
 	//--------------------------------------
+	//自定义菜单
+	private PopupWindow menu;  
+    private LayoutInflater inflater;  
+    private View layout;  
+    
+    private EditText metSrvIp;
+    private int iFlagTestButton=0;
+    private String webServicePath = "http://1.58.48.112:7812/";
+	//--------------------------------------
 	private Timer timer;
 	public String Longitude;
 	public String Latitude;
@@ -93,6 +106,64 @@ public class MainActivity extends Activity {
 	private EditText editText;
     private LocationManager lm;
     private static final String TAG="GpsActivity"; 
+    //-------------------------------------------
+    //自定义菜单
+    //判断按键 菜单的显示与隐藏  
+    @Override  
+    public boolean onKeyDown(int keyCode, KeyEvent event) {  
+        if(!menu.isShowing()&&keyCode == KeyEvent.KEYCODE_MENU){  
+           show();  
+        }
+        else if(keyCode == KeyEvent.KEYCODE_BACK){  
+        	if(menu.isShowing())
+        	{
+        		menu.dismiss(); 
+        	}
+        	else
+        	{
+        		super.finish();
+        	}
+        }
+        else{  
+            menu.dismiss();
+        	//super.finish();
+        }    
+        return true;  
+    }  
+    //实例化PopupWindow创建菜单  
+    private void initMenu(){  
+  
+            //获取LayoutInflater实例  
+            inflater  = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);  
+            //获取弹出菜单的布局  
+            layout = inflater.inflate(R.layout.activity_main,null);  
+            //设置popupWindow的布局  
+            menu = new PopupWindow(layout, WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT);  
+  
+    }
+  //显示菜单  
+    private void show(){  
+           //设置位置  
+    	TextView mtvSrvIp = (TextView)this.findViewById(R.id.tvSrvIp);
+    	metSrvIp = (EditText)this.findViewById(R.id.etSrvIP);
+    	iFlagTestButton++;
+    	if(iFlagTestButton%2 == 0)
+    	{
+    		mtvSrvIp.setVisibility(View.GONE);
+    		metSrvIp.setVisibility(View.GONE);
+    	}
+    	else 
+    	{
+    		mtvSrvIp.setVisibility(View.VISIBLE);
+    		metSrvIp.setVisibility(View.VISIBLE);
+    	}
+    	if ( metSrvIp.getText().toString().length() > 9 )
+    	{
+    		webServicePath = "http://" + metSrvIp.getText().toString() + "/";
+    		Toast.makeText(this, webServicePath , Toast.LENGTH_SHORT).show();
+    	}
+    }
+    //-------------------------------------------
     // 定义Handler  
     Handler handler = new Handler() { 
  
@@ -142,6 +213,10 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //---------------------------------------------------
+        //自定义菜单
+        //实例化PopupWindow创建菜单  
+        initMenu(); 
         //---------------------------------------------------
         
         //mCMGprs = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
